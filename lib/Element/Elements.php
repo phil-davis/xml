@@ -40,14 +40,14 @@ class Elements implements Xml\Element
     /**
      * Value to serialize.
      *
-     * @var array<int, mixed>
+     * @var array<int, string>
      */
     protected array $value;
 
     /**
      * Constructor.
      *
-     * @param array<int, mixed> $value
+     * @param array<int, string> $value
      */
     public function __construct(array $value = [])
     {

@@ -40,14 +40,14 @@ class KeyValue implements Xml\Element
     /**
      * Value to serialize.
      *
-     * @var array<string, mixed>
+     * @var array<'attributes'|'name'|'value'|int, mixed>
      */
     protected array $value;
 
     /**
      * Constructor.
      *
-     * @param array<string, mixed> $value
+     * @param array<'attributes'|'name'|'value'|int, mixed> $value
      */
     public function __construct(array $value = [])
     {

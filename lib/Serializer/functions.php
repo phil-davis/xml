@@ -147,7 +147,7 @@ function repeatingElements(Writer $writer, array $items, string $childElementNam
  *
  * You can even mix the two array syntaxes.
  *
- * @param string|int|float|bool|array<int|string, mixed>|object $value
+ * @param string|int|float|bool|array<int,array{'name':string,'value':mixed,'attributes':array<string,string>}>|array{'name':string,'value':mixed,'attributes':array<string,string>}|object|null $value
  */
 function standardSerializer(Writer $writer, $value): void
 {
@@ -167,7 +167,13 @@ function standardSerializer(Writer $writer, $value): void
         // if the array had a 'name' element, we assume that this array
         // describes a 'name' and optionally 'attributes' and 'value'.
 
+        /**
+         * @var string $name
+         */
         $name = $value['name'];
+        /**
+         * @var array<string,string> $attributes
+         */
         $attributes = isset($value['attributes']) ? $value['attributes'] : [];
         $value = isset($value['value']) ? $value['value'] : null;
 
@@ -176,6 +182,9 @@ function standardSerializer(Writer $writer, $value): void
         $writer->write($value);
         $writer->endElement();
     } elseif (is_array($value)) {
+        /**
+         * @var array<'attributes'|'name'|'value'|int, mixed>|bool|float|int|object|string|null $item
+         */
         foreach ($value as $name => $item) {
             if (is_int($name)) {
                 // This item has a numeric index. We just loop through the

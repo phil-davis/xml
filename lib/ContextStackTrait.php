@@ -80,7 +80,13 @@ trait ContextStackTrait
     /**
      * Backups of previous contexts.
      *
-     * @var list<mixed>
+     * Each entry in the list of contexts is an array that has 4 elements;
+     * elementMap
+     * contextUri
+     * namespaceMap
+     * classMap
+     *
+     * @var list<array{0:array<string,class-string|callable|object>, 1:string|null, 2:array<string,class-string|string|null>, 3:array<class-string,callable(Writer, object):mixed>}>
      */
     protected array $contextStack = [];
 
@@ -106,11 +112,13 @@ trait ContextStackTrait
      */
     public function popContext(): void
     {
-        list(
-            $this->elementMap,
-            $this->contextUri,
-            $this->namespaceMap,
-            $this->classMap
-        ) = array_pop($this->contextStack);
+        if (!empty($this->contextStack)) {
+            list(
+                $this->elementMap,
+                $this->contextUri,
+                $this->namespaceMap,
+                $this->classMap
+            ) = array_pop($this->contextStack);
+        }
     }
 }

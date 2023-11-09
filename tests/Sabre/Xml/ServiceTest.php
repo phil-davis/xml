@@ -456,6 +456,12 @@ class PropFindTestAsset implements XmlDeserializable
         $reader->pushContext();
         $reader->elementMap['{DAV:}prop'] = 'Sabre\Xml\Element\Elements';
 
+        /**
+         * @var array<int, mixed> $v
+         *
+         * For this test, the values are an array, and $properties has array type declared.
+         * So give a type-hint here about $v so that phpstan will not complain.
+         */
         foreach (KeyValue::xmlDeserialize($reader) as $k => $v) {
             switch ($k) {
                 case '{DAV:}prop':

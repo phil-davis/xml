@@ -92,7 +92,7 @@ class Writer extends \XMLWriter
      *    ]
      * ]
      *
-     * @param mixed $value PHP value to be written
+     * @param array<int,array<'attributes'|'name'|'value'|int, mixed>>|array<string, mixed>|bool|float|int|object|string|null $value PHP value to be written
      */
     public function write($value): void
     {
@@ -182,8 +182,8 @@ class Writer extends \XMLWriter
      * XMLWriter::startElement doesn't either.
      * From PHP 8.0 the typehint exists, so it can be added here after PHP 7.4 is dropped.
      *
-     * @param string                                      $name
-     * @param array<int|string, mixed>|string|object|null $content
+     * @param string                                                                     $name
+     * @param array<'attributes'|'name'|'value'|int, mixed>|bool|float|int|object|string $content
      */
     public function writeElement($name, $content = null): bool
     {

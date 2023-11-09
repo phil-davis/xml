@@ -20,14 +20,14 @@ use Sabre\Xml;
 class Base implements Xml\Element
 {
     /**
-     * @var mixed PHP value to serialize
+     * @var array<'attributes'|'name'|'value'|int, mixed>|bool|float|int|object|string|null PHP value to serialize
      */
     protected $value;
 
     /**
      * Constructor.
      *
-     * @param mixed $value PHP value to serialize
+     * @param array<'attributes'|'name'|'value'|int, mixed>|bool|float|int|object|string|null $value PHP value to serialize
      */
     public function __construct($value = null)
     {

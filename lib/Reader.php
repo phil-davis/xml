@@ -103,7 +103,7 @@ class Reader extends \XMLReader
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
-     * @param array<string, mixed>|null $elementMap
+     * @param array<string, (callable(): mixed)|class-string|object>|null $elementMap
      *
      * @return array<int,array<string, mixed>>
      */
@@ -128,7 +128,7 @@ class Reader extends \XMLReader
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
-     * @param array<string, mixed>|null $elementMap
+     * @param array<string, (callable(): mixed)|class-string|object>|null $elementMap
      *
      * @return array<int,array<string, mixed>>|string|null
      */
