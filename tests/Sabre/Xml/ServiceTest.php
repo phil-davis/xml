@@ -459,6 +459,10 @@ class PropFindTestAsset implements XmlDeserializable
         foreach (KeyValue::xmlDeserialize($reader) as $k => $v) {
             switch ($k) {
                 case '{DAV:}prop':
+                    if (!is_array($v)) {
+                        // this helps phpstan to know that the value is an array that can fit into "properties"
+                        throw new \Exception('the properties value should be an array but is not.');
+                    }
                     $self->properties = $v;
                     break;
                 case '{DAV:}allprop':

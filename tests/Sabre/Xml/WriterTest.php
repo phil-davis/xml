@@ -398,6 +398,9 @@ HI
 
         $this->writer->classMap['stdClass'] = function (Writer $writer, $value) {
             foreach (get_object_vars($value) as $key => $val) {
+                // The test only has some string values. So assert that here.
+                // It helps phpstan to know that the writeElement call is OK
+                self::assertIsString($val);
                 $writer->writeElement('{http://sabredav.org/ns}'.$key, $val);
             }
         };

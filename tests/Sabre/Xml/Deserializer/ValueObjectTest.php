@@ -182,9 +182,13 @@ XML;
             'attributes' => [],
         ];
 
+        $this->assertArrayHasKey('value', $output);
+        $outputValue = $output['value'];
+        $this->assertIsArray($outputValue);
+        $this->assertArrayHasKey(0, $outputValue);
         $this->assertEquals(
             $expected,
-            $output['value'][0]
+            $outputValue[0]
         );
     }
 }
