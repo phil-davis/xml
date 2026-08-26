@@ -358,7 +358,12 @@ function functionCaller(Reader $reader, callable $func, string $namespace)
     } elseif (is_string($func) && str_contains($func, '::')) {
         // We have a string that should refer to a method that exists, like "MyClass::someMethod"
         // ReflectionMethod knows how to handle that as-is
-        $ref = new \ReflectionMethod($func);
+        if (PHP_VERSION_ID >= 80400) {
+            // @phpstan-ignore staticMethod.notFound
+            $ref = \ReflectionMethod::createFromMethodName($func);
+        } else {
+            $ref = new \ReflectionMethod($func);
+        }
     } elseif ($func instanceof \Closure || is_string($func)) {
         // We have an actual Closure (a real function) or a string that is the name of a function
         // ReflectionFunction can take either of those
