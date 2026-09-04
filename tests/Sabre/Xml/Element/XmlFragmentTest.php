@@ -110,9 +110,7 @@ BLA;
     #[DataProvider('xmlProvider')]
     public function testSerialize(string $expectedFallback, string $input, ?string $expected = null): void
     {
-        if (is_null($expected)) {
-            $expected = $expectedFallback;
-        }
+        $expected ??= $expectedFallback;
 
         $writer = new Writer();
         $writer->namespaceMap = [
